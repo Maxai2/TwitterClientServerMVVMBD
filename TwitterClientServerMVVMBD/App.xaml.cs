@@ -8,6 +8,7 @@ using System.Windows;
 using Autofac;
 using TwitterClientServerMVVMBD.Interface;
 using TwitterClientServerMVVMBD.View;
+using TwitterClientServerMVVMBD.ViewModel;
 
 namespace TwitterClientServerMVVMBD
 {
@@ -26,9 +27,9 @@ namespace TwitterClientServerMVVMBD
             builder.RegisterType<MainWindow>().As<IMainWindow>().SingleInstance();
             builder.RegisterType<LoginWindow>().As<ILoginWindow>().SingleInstance();
             #endregion
-            #region ModelView
-            builder.RegisterType<MainWindowModelView>().As<IMainWindowModelView>().SingleInstance();
-            builder.RegisterType<LoginWindowModelView>().As<ILoginWindowModelView>().SingleInstance();
+            #region ViewModel
+            builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>().SingleInstance();
+            builder.RegisterType<LoginWindowViewModel>().As<ILoginWindowViewModel>().SingleInstance();
             #endregion
 
             Container = builder.Build();
@@ -37,7 +38,7 @@ namespace TwitterClientServerMVVMBD
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            var viewModel = Container.Resolve<IMainWindowViewModel>();
+            var viewModel = Container.Resolve<ILoginWindowViewModel>();
             var mainView = viewModel.View;
             this.MainWindow = mainView as Window;
             this.MainWindow.Show();

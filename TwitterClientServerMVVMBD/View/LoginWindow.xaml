@@ -4,9 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitterClientServerMVVMBD.View"
-        mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+								xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes" 
+								xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+								mc:Ignorable="d" Title="LoginWindow" Height="400" Width="200" WindowStartupLocation="CenterScreen" 
+								WindowStyle="None">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Image Grid.Row="0" Source="../Resources/twitPic.PNG" Height="50"/>
+
+		<dragablz:TabablzControl Grid.Row="1" Background="#1EA1F3" FixedHeaderCount="2">
+			<dragablz:TabablzControl.InterTabController>
+				<dragablz:InterTabController />
+			</dragablz:TabablzControl.InterTabController>
+			
+			<TabItem Header="Login">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="0.5*"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+
+					<StackPanel Grid.Row="1">
+						<TextBox material:HintAssist.Hint="Login" Margin="0 10"/>
+						<local:PasswordBoxWithHint Margin="0 10"/>
+
+					</StackPanel>
+
+					<Button Grid.Row="2" Content="Ok" Background="AliceBlue" Foreground="Black" Command="{Binding LoginCommand}"/>
+
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Registeration">
+
+			</TabItem>
+			
+		</dragablz:TabablzControl>
+	</Grid>
 </Window>
